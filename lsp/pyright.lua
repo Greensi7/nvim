@@ -1,11 +1,11 @@
 return {
-	cmd = { "basedpyright-langserver", "--stdio" },
+	cmd = { "pyright-langserver", "--stdio" },
 	filetypes = { "python" },
 	settings = {
 		python = {
 			pythonPath = "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
 		},
-		basedpyright = {
+		pyright = {
 			analysis = {
 				autoSearchPaths = true,
 				useLibraryCodeForTypes = true,

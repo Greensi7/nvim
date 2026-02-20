@@ -23,6 +23,12 @@ return {
 			python = { "isort", "black", lsp_format = "fallback" },
 			rust = { "rustfmt", lsp_format = "fallback" },
 			json = { "jsonf" },
+			css = { "prettierd" },
+			html = { "prettierd" },
+			javascript = { "prettierd" },
+			typescript = { "prettierd" },
+			javascriptreact = { "prettierd" },
+			typescriptreact = { "prettierd" },
 		},
 		formatters = {
 			jsonf = {

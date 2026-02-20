@@ -1,9 +1,10 @@
 require("config.lazy")
 require("mason").setup()
-
 local lsp_list = {
+	"tailwind",
+	"vtsls",
 	"lua_ls",
-	"basedpyright",
+	"pyright",
 	"gopls",
 	"clangd",
 	-- "nil_ls",

@@ -19,12 +19,6 @@ return {
 			},
 			close_on_exit = false,
 		})
-		vim.keymap.set(
-			"t",
-			"<Esc><Esc>",
-			[[<C-\><C-n><cmd>lua _TOGGLE_MYTERM()<CR>]],
-			{ noremap = true, silent = true }
-		)
 		vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { noremap = true, silent = true })
 
 		local Terminal = require("toggleterm.terminal").Terminal
@@ -35,6 +29,5 @@ return {
 		end
 
 		vim.keymap.set("n", "<leader>a", _TOGGLE_MYTERM, { noremap = true, silent = true })
-		vim.keymap.set("n", "<Esc><Esc>", _TOGGLE_MYTERM, { noremap = true, silent = true })
 	end,
 }
