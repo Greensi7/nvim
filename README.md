@@ -4,6 +4,7 @@ A personal Neovim setup focused on development productivity.
 
 ## Setup Overview
 
+
 - **LSP and autocompletion**: Mason-managed language servers with common LSP navigation/actions.
 - **Formatting**: Conform integration with language-specific formatters and format-on-save.
 - **Search and navigation**: Telescope bindings for files, grep, and man pages.
@@ -11,6 +12,7 @@ A personal Neovim setup focused on development productivity.
 - **Debugging**: nvim-dap with UI and Python/Go debugging helpers.
 - **Terminal workflow**: Floating terminal toggle for quick shell access.
 - **Diagnostics and quality of life**: Diagnostic views, search clear, autosave on focus/buffer leave, and config reload shortcuts.
+
 
 ## Keybindings
 
