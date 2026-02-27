@@ -1,7 +1,8 @@
 require("config.lazy")
 require("mason").setup()
-local lsp_list = {
-	"tailwind",
+
+local lsp_list_mason_install = {
+	"tailwindcss",
 	"vtsls",
 	"lua_ls",
 	"pyright",
@@ -15,9 +16,12 @@ local lsp_list = {
 	--"bashls"
 }
 require("mason-lspconfig").setup({
-	ensure_installed = lsp_list,
+	ensure_installed = lsp_list_mason_install,
 	automatic_installation = true,
 })
+
+local lsp_list = vim.deepcopy(lsp_list_mason_install)
+table.insert(lsp_list, "roslyn")
 vim.lsp.enable(lsp_list)
 
 vim.opt.shiftwidth = 4
@@ -61,7 +65,7 @@ vim.keymap.set("n", "<leader>ff", function()
 end, { desc = "Telescope find files" })
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
 vim.keymap.set("n", "<leader>fm", builtin.man_pages, { desc = "Telescope man pages" })
-vim.keymap.set("n", "<leader>bf", vim.lsp.buf.format, { desc = "Format Buffer" })
+--vim.keymap.set("n", "<leader>bf", vim.lsp.buf.format, { desc = "Format Buffer" })
 
 vim.api.nvim_set_keymap("n", "<leader>/", ":nohlsearch<CR>", { noremap = true, silent = true })
 

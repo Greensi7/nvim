@@ -4,8 +4,12 @@ return {
 	opts = {
 		defaults = {
 			file_ignore_patterns = {
+                "bin/",
+                ".idea",
+                "node_modules/",
 				"^.git/",
 				"__pycache__",
+                ".DS_Store"
 			},
 		},
 		pickers = {
