@@ -8,6 +8,7 @@ local lsp_list_mason_install = {
 	"pyright",
 	"gopls",
 	"clangd",
+    "docker_language_server",
 	-- "nil_ls",
 	-- "nixd",
 	--"ltex",

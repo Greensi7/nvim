@@ -7,7 +7,7 @@ return {
 			direction = "float",
 			shade_terminals = false,
 			start_in_insert = true,
-			persist_mode = true,
+			persist_mode = false,
 			float_opts = {
 				width = function()
 					return math.floor(vim.o.columns * 0.9)
@@ -19,7 +19,6 @@ return {
 			},
 			close_on_exit = false,
 			on_open = function(term)
-				-- 2. Pass `buffer = term.bufnr` to make this keymap local to the terminal window
 				vim.keymap.set("n", "<Esc>", "<cmd>close<CR>", { noremap = true, silent = true, buffer = term.bufnr })
 			end,
 		})
