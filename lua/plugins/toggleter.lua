@@ -18,6 +18,10 @@ return {
 				border = "rounded",
 			},
 			close_on_exit = false,
+			on_open = function(term)
+				-- 2. Pass `buffer = term.bufnr` to make this keymap local to the terminal window
+				vim.keymap.set("n", "<Esc>", "<cmd>close<CR>", { noremap = true, silent = true, buffer = term.bufnr })
+			end,
 		})
 		vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { noremap = true, silent = true })
 

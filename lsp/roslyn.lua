@@ -2,8 +2,6 @@ return {
 	cmd = { "roslyn-language-server", "--autoLoadProjects", "--stdio" },
 	filetypes = {
 		"cs", -- Standard C# code files
-		"razor", -- Blazor / Razor components
-		"cshtml",
 	},
 	settings = {},
 	root_dir = function(bufnr, on_dir)
