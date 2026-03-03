@@ -8,7 +8,7 @@ local lsp_list_mason_install = {
 	"pyright",
 	"gopls",
 	"clangd",
-    "docker_language_server",
+	"docker_language_server",
 	-- "nil_ls",
 	-- "nixd",
 	--"ltex",
@@ -18,7 +18,6 @@ local lsp_list_mason_install = {
 }
 require("mason-lspconfig").setup({
 	ensure_installed = lsp_list_mason_install,
-	automatic_installation = true,
 })
 
 local lsp_list = vim.deepcopy(lsp_list_mason_install)
