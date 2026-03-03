@@ -1,5 +1,5 @@
 return {
-	cmd = { "clangd" },
+	cmd = { "clangd", "--compile-commands-dir", "build"},
 	filetypes = { "c" },
 	settings = {
 		clangd = {
