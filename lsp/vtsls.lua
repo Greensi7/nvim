@@ -5,11 +5,11 @@ return {
 	settings = {
 		typescript = {
 			updateImportsOnFileMove = { enabled = "always" },
-			suggest = { completeFunctionCalls = true },
+			suggest = { completeFunctionCalls = false },
 		},
 		javascript = {
 			updateImportsOnFileMove = { enabled = "always" },
-			suggest = { completeFunctionCalls = true },
+			suggest = { completeFunctionCalls = false },
 		},
 	},
 }
