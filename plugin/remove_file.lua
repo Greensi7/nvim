@@ -14,9 +14,9 @@ vim.keymap.set("n", "<leader>rm", function()
 	local alternate = vim.fn.bufnr("#")
 
 	if alternate == -1 or alternate == current then
-        vim.cmd("enew")
-    else
-        vim.cmd("b#")
+		vim.cmd("enew")
+	else
+		vim.cmd("b#")
 	end
 	vim.cmd("!rm " .. old_path)
 	vim.cmd(":let @# = bufnr('%')")

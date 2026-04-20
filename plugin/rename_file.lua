@@ -34,7 +34,7 @@ vim.keymap.set("n", "<leader>rn", function()
 
 		vim.cmd("edit!")
 
-        vim.cmd(":let @# = bufnr('%')")
+		vim.cmd(":let @# = bufnr('%')")
 		vim.notify("Renamed to: " .. input, vim.log.levels.INFO)
 	end)
 end, { desc = "Rename current file and keep buffer state" })
