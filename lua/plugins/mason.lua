@@ -1,6 +1,6 @@
-return{
-    "mason-org/mason-lspconfig.nvim",
-    dependencies = {
-        { "mason-org/mason.nvim", opts = {} },
-    }
+return {
+	"mason-org/mason-lspconfig.nvim",
+	dependencies = {
+		{ "mason-org/mason.nvim", opts = {} },
+	},
 }
