@@ -19,6 +19,50 @@ return {
 				commented = true, -- Show virtual text alongside comment
 			})
 
+			dap.adapters.gdb = {
+				type = "executable",
+				command = "gdb",
+				args = { "--interpreter=dap", "--eval-command", "set print pretty on" },
+			}
+
+			dap.configurations.c = {
+				{
+					name = "Launch",
+					type = "gdb",
+					request = "launch",
+					program = function()
+						return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+					end,
+					args = {}, -- provide arguments if needed
+					cwd = "${workspaceFolder}",
+					stopAtBeginningOfMainSubprogram = false,
+				},
+				{
+					name = "Select and attach to process",
+					type = "gdb",
+					request = "attach",
+					program = function()
+						return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+					end,
+					pid = function()
+						local name = vim.fn.input("Executable name (filter): ")
+						return require("dap.utils").pick_process({ filter = name })
+					end,
+					cwd = "${workspaceFolder}",
+				},
+				{
+					name = "Attach to gdbserver :1234",
+					type = "gdb",
+					request = "attach",
+					target = "localhost:1234",
+					program = function()
+						return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+					end,
+					cwd = "${workspaceFolder}",
+				},
+			}
+			dap.configurations.cpp = dap.configurations.c
+
 			dap_python.setup("python3")
 
 			-- 2. ADD THIS: Inject the "Launch as Module" configuration
@@ -71,10 +115,16 @@ return {
 			-- Continue / Start
 			vim.keymap.set("n", "<leader>dc", function()
 				dap.continue()
+				vim.keymap.set("n", "<F5>", function()
+					dap.continue()
+				end, opts)
 			end, opts)
 
 			-- Step Over
 			vim.keymap.set("n", "<leader>do", function()
+				dap.step_over()
+			end, opts)
+			vim.keymap.set("n", "<F10>", function()
 				dap.step_over()
 			end, opts)
 
@@ -82,14 +132,23 @@ return {
 			vim.keymap.set("n", "<leader>di", function()
 				dap.step_into()
 			end, opts)
+			vim.keymap.set("n", "<F11>", function()
+				dap.step_into()
+			end, opts)
 
 			-- Step Out
 			vim.keymap.set("n", "<leader>dO", function()
 				dap.step_out()
 			end, opts)
+			vim.keymap.set("n", "<S-F11>", function()
+				dap.step_out()
+			end, opts)
 
 			-- Keymap to terminate debugging
 			vim.keymap.set("n", "<leader>dq", function()
+				require("dap").terminate()
+			end, opts)
+			vim.keymap.set("n", "<S-F5>", function()
 				require("dap").terminate()
 			end, opts)
 
