@@ -1,29 +1,8 @@
-require("config.lazy")
-require("mason").setup()
-
-local lsp_list_mason_install = {
-	"tailwindcss",
-	"vtsls",
-	"lua_ls",
-	"pyright",
-	"gopls",
-	"clangd",
-	"docker_language_server",
-	-- "nil_ls",
-	-- "nixd",
-	--"ltex",
-	--"terraformls",
-	--"yamlls",
-	--"bashls"
-}
-
-require("mason-lspconfig").setup({
-	ensure_installed = lsp_list_mason_install,
-})
-
-local lsp_list = vim.deepcopy(lsp_list_mason_install)
-table.insert(lsp_list, "roslyn")
-vim.lsp.enable(lsp_list)
+-- ==========================================================================
+-- Neovim options, keymaps, and autocmds
+-- Plugin declarations are in plugin/00-packs.lua
+-- Plugin configs are in plugin/*.lua
+-- ==========================================================================
 
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
@@ -39,9 +18,14 @@ vim.opt.clipboard = "unnamedplus"
 vim.g.mapleader = " "
 
 vim.keymap.set("n", "<leader>sl", function()
-	vim.lsp.enable(lsp_list, false)
-	vim.lsp.enable(lsp_list, true)
-	vim.notify("Lsp Servers Restarted", 1)
+	local lsp_list = vim.lsp.get_clients()
+	for _, client in ipairs(lsp_list) do
+		vim.lsp.stop_client(client.id)
+	end
+	vim.defer_fn(function()
+		vim.cmd("edit")
+		vim.notify("Lsp Servers Restarted", 1)
+	end, 500)
 end)
 
 vim.keymap.set("n", "<leader>ss", function()
@@ -59,13 +43,6 @@ end)
 vim.keymap.set("x", "p", [["_dP]])
 vim.keymap.set("n", "<leader><leader>", "<cmd>b#<CR>", { desc = "Mvoe to the previous buffer" })
 
-local builtin = require("telescope.builtin")
---vim.keymap.set("n", "<leader>fk", builtin, { desc = "Telescope live grep" })
-vim.keymap.set("n", "<leader>ff", function()
-	builtin.find_files({ hidden = true })
-end, { desc = "Telescope find files" })
-vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
-vim.keymap.set("n", "<leader>fm", builtin.man_pages, { desc = "Telescope man pages" })
 --vim.keymap.set("n", "<leader>bf", vim.lsp.buf.format, { desc = "Format Buffer" })
 
 vim.api.nvim_set_keymap("n", "<leader>/", ":nohlsearch<CR>", { noremap = true, silent = true })
