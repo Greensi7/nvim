@@ -3,6 +3,7 @@ return {
 		"clangd",
 		"--clang-tidy",
 		"--function-arg-placeholders=0",
+		"--compile-commands-dir=/Users/adamtabak/Documents/fuzzing/openssl/",
 		--	"--header-insertion=iwyu",
 		--	"--header-insertion-decorators",
 	},

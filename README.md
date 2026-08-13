@@ -7,11 +7,12 @@ A personal Neovim setup focused on development productivity.
 
 - **LSP and autocompletion**: Mason-managed language servers with common LSP navigation/actions.
 - **Formatting**: Conform integration with language-specific formatters and format-on-save.
-- **Search and navigation**: Telescope bindings for files, grep, and man pages.
+- **Search and navigation**: Native fzf bindings for files, grep, and man pages.
+- **Git changes**: Gutter indicators, hunk previews, and diffs against the last commit.
 - **File management**: Custom bindings to create, rename, and remove files.
 - **Debugging**: nvim-dap with UI and Python/Go debugging helpers.
 - **Terminal workflow**: Floating terminal toggle for quick shell access.
-- **Diagnostics and quality of life**: Diagnostic views, search clear, autosave on focus/buffer leave, and config reload shortcuts.
+- **Diagnostics and quality of life**: Diagnostic views, search clear, autosave on focus loss, and config reload shortcuts.
 
 
 ## Keybindings
@@ -39,7 +40,7 @@ A personal Neovim setup focused on development productivity.
 | `<leader>e` | Show line diagnostic |
 | `<leader>E` | Show diagnostics list |
 
-### Telescope
+### Fuzzy finding
 
 | Key | Description |
 | --- | --- |
@@ -52,6 +53,16 @@ A personal Neovim setup focused on development productivity.
 | Key | Description |
 | --- | --- |
 | `<leader>fb` | Format current buffer |
+
+### Git changes
+
+| Key | Description |
+| --- | --- |
+| `]c` | Jump to next changed hunk |
+| `[c` | Jump to previous changed hunk |
+| `<leader>gp` | Preview the current changed hunk inline |
+| `<leader>gd` | Diff the current file against `HEAD` |
+| `<leader>gS` | Toggle gutter change indicators |
 
 ### File Operations
 

@@ -15,7 +15,68 @@ dap.adapters.gdb = {
 	args = { "--interpreter=dap", "--eval-command", "set print pretty on" },
 }
 
+local function first_executable(paths)
+	for _, path in ipairs(paths) do
+		if vim.fn.executable(path) == 1 then
+			return path
+		end
+	end
+end
+
+local lldb_dap = first_executable({
+	"lldb-dap",
+	"/Library/Developer/CommandLineTools/usr/bin/lldb-dap",
+	"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lldb-dap",
+})
+
+if lldb_dap ~= nil then
+	dap.adapters.lldb = {
+		type = "executable",
+		command = lldb_dap,
+		name = "lldb",
+	}
+else
+	vim.notify("nvim-dap: lldb-dap not found", vim.log.levels.WARN)
+end
+
 dap.configurations.c = {
+	{
+		name = "Launch (LLDB)",
+		type = "lldb",
+		request = "launch",
+		program = function()
+			return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+		end,
+		args = function()
+			local args = vim.fn.input("Arguments: ")
+			return vim.split(args, " ", { trimempty = true })
+		end,
+		cwd = "${workspaceFolder}",
+		stopOnEntry = false,
+	},
+	{
+		name = "OpenSSL echstore_parser corpus (LLDB)",
+		type = "lldb",
+		request = "launch",
+		program = "/Users/adamtabak/Documents/fuzzing/openssl/fuzz/echstore_parser",
+		args = {
+			"-runs=0",
+			"-max_len=1500",
+			"fuzz/corpora/echstore_parser",
+		},
+		cwd = "/Users/adamtabak/Documents/fuzzing/openssl",
+		stopOnEntry = false,
+	},
+	{
+		name = "Select and attach to process (LLDB)",
+		type = "lldb",
+		request = "attach",
+		pid = function()
+			local name = vim.fn.input("Executable name (filter): ")
+			return require("dap.utils").pick_process({ filter = name })
+		end,
+		cwd = "${workspaceFolder}",
+	},
 	{
 		name = "Launch",
 		type = "gdb",

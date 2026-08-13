@@ -29,9 +29,10 @@ vim.pack.add({
 	"https://github.com/mason-org/mason.nvim",
 	"https://github.com/mason-org/mason-lspconfig.nvim",
 
-	-- Telescope + dependency
+	-- Fuzzy finding
 	"https://github.com/nvim-lua/plenary.nvim",
 	"https://github.com/nvim-telescope/telescope.nvim",
+	"https://github.com/ibhagwan/fzf-lua",
 
 	-- Harpoon (pinned to harpoon2 branch)
 	{ src = "https://github.com/ThePrimeagen/harpoon", version = "harpoon2" },
@@ -42,6 +43,9 @@ vim.pack.add({
 
 	-- Formatting
 	"https://github.com/stevearc/conform.nvim",
+
+	-- Git change indicators
+	"https://github.com/lewis6991/gitsigns.nvim",
 
 	-- Terminal
 	"https://github.com/akinsho/toggleterm.nvim",

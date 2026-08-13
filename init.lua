@@ -47,9 +47,11 @@ vim.keymap.set("n", "<leader><leader>", "<cmd>b#<CR>", { desc = "Mvoe to the pre
 
 vim.api.nvim_set_keymap("n", "<leader>/", ":nohlsearch<CR>", { noremap = true, silent = true })
 
-vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
+vim.api.nvim_create_autocmd("FocusLost", {
 	callback = function()
-		vim.cmd("silent! write")
+		if vim.bo.modified and vim.bo.buftype == "" then
+			vim.cmd("silent! update")
+		end
 	end,
 })
 
